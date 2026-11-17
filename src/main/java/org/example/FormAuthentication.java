@@ -20,8 +20,6 @@ public class FormAuthentication {
         WebElement formAuthenticationLink = driver.findElement(By.linkText("Form Authentication"));
         formAuthenticationLink.click();
     }
-
-
     @Test(priority = 0)
     public  void validLogin(){
         WebElement userName = driver.findElement(By.id("username"));
@@ -58,12 +56,8 @@ public class FormAuthentication {
         String actualMessage2 = driver.findElement(By.id("flash")).getText();
         Assert.assertTrue(actualMessage2.contains(expectedMsg2));
     }
-
     @AfterClass
     public void tearDown(){
         driver.quit();
     }
-
-
-
 }
