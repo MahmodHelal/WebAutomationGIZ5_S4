@@ -15,6 +15,8 @@ import pages.dynamicLoading.DynamicLoadingPage;
 import pages.dynamicLoading.ExampleOne;
 import pages.dynamicLoading.ExampleTwo;
 
+import java.time.Duration;
+
 public class BaseTests {
     protected WebDriver driver;
     protected HeroKuAppMain heroKuAppMain;
@@ -30,6 +32,7 @@ public class BaseTests {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         heroKuAppMain = new HeroKuAppMain(driver);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
     @BeforeMethod
     public void goHome(){
