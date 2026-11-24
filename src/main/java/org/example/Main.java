@@ -4,31 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.Assert;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  {
         WebDriver driver = new EdgeDriver();
-        driver.get("https://www.saucedemo.com/");
-        String pageTitle = driver.getTitle();
-        System.out.println("Current Title is "+ pageTitle);
-        String expectedUrl = "https://www.saucedemo.com/";
-        String actualUrl = driver.getCurrentUrl();
-        if (actualUrl.equals(expectedUrl)){
-            System.out.println("Test Passed");
-        }
-        System.out.println(actualUrl.equals(expectedUrl) ? "Test Pass" : "Test Fail");
-//        WebElement userName = driver.findElement(By.id("user-name"));
-        WebElement userName = driver.findElement(By.cssSelector("#user-name"));
-        userName.sendKeys("standard_user");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("secret_sauce");
-
-        WebElement loginButton = driver.findElement(By.id("login-button"));
-        loginButton.click();
-
+        driver.manage().window().maximize();
+        driver.get("https://the-internet.herokuapp.com/");
+        driver.findElement(By.linkText("Dynamic Loading")).click();
+        driver.findElement(By.partialLinkText("Example 1:")).click();
+        driver.findElement(By.xpath("//button[text()='Start']")).click();
+        String actualFinishText =driver.findElement(By.cssSelector("#finish > h4")).getText();
+        Assert.assertTrue(actualFinishText.contains("Hello World!"));
         driver.quit();
-
-
     }
 }
